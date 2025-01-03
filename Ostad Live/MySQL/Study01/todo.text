@@ -1,0 +1,60 @@
+
+---------------PART 01--------------------
+
+D# What is Database ?
+D# Environment Setup XAMPP+VS Code EXTENSION
+D# Create a Database
+D# What is Tables,Columns,Rows,Properties
+D# What is SQL,MySQL/PLSQL/MSSQL/PostGreSQL/SQLite 
+D# Create a Employees table id, firstName,lastName,City,Phone,Email,Salary Using SQL 
+D# How to Write Insert Query 
+D# How to Write Delete Query 
+D# How to Write Update Query 
+D# How to Write SELECT ALL Query 
+D# How to Write SELECT Using Where Query 
+D# How to Write SELECT With Sort 
+D# How to Write SELECT With Limit 
+D# How to Write SELECT With GROUP
+D# Select Unique 
+D# SQL aggregate
+    - COUNT()
+    - SUM()
+    - AVG()
+    - MIN()
+    - MAX()
+
+
+
+----------------PART 02-----------------------------------
+# What is Relationship 
+# Relationship Sign
+# How to Read ERD Diagram 
+# One-to-One (1:1)
+# One-to-Many (1:N)
+# Only-One-to-Many (1:N) 
+# Many-to-Many (N:M) 
+# Foreign Key Constraint 
+# Inner Join Query
+# Left Join Query
+# Rigt Join Query
+# Cross Join Query
+# ERD Diagram Generate (Oracle SQL Developer/DB Forge Studio)
+
+
+
+---------------
+Store Procedure 
+- Credit
+- Debit
+- BEFT-->Credit,Debit
+- Indexing 
+- Query Fast 
+- 100 User Query Hang 
+- Remove 
+- EOD
+- Month
+- Data Migration 
+- 15 Aug 
+- Covid-19
+- BOD
+- DBA 

@@ -1,0 +1,52 @@
+List
+-ordered
+-Mutable
+-ALlow Duplicate
+-Heterogeneous
+-Dynamic Size
+-append
+-insert
+-extend
+-remove
+-pop
+-clear
+-index
+-count
+-sort
+-reverge
+-len
+-loop
+
+-------------------------------
+
+Tuples
+-Ordered
+-Immutable
+-Allow Duplicate
+-Heterogeneous
+-Fixed Size
+-Count
+-Index
+
+-------------------------------
+
+Set
+-unordered
+-mutable
+-No duplicate
+-Heterogeneous
+-Dynamic Size
+-Add
+-update
+-remove
+-union
+-Intersection
+
+-----------------
+JSON
+-Common Interchange Format
+-Python,JS,Dart,Java
+-Backend and frontend(b2f)
+-back and backend(b2b)
+-Rest API
+-Rest API Development

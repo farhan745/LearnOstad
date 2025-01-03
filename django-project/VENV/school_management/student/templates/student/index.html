@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django Render</title>
+  <link rel="stylesheet" href="{% static 'student/css/style.css' %}">
+</head>
+<body>
+  <h1>Welcome To the Student Profile</h1>
+  <h2>Name: {{name}}</h2>
+  <h2>Age: {{age}}</h2>
+  {% if age > 18 %}
+  <h2>You are Adult</h2>
+  
+  {% else %}
+  <h2>You are Child</h2>
+  {% endif %}
+
+  <hr>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Subject Name</th>
+      <th>Marks</th>
+      <th>Grade</th>
+    </tr>
+
+    {% for subject in marks %}
+    <tr>
+      <td>{{ subject.id }}</td>
+      <td>{{ subject.subject }}</td>
+      <td>{{ subject.marks }}</td>
+      <td>
+        {% if subject.marks >= 80 %}
+            <p>A+</p>
+            {% elif subject.marks >= 70 %}
+                <p>A</p>
+            {% elif subject.marks >= 60 %}
+                B
+            {% elif subject.marks >= 50 %}
+                C
+            {% elif subject.marks >= 40 %}
+                D
+            {% else %}
+                F
+        {% endif %}
+
+      </td>
+    </tr>
+    {% endfor %}
+
+    {{age | add:"2"}}
+    <h1>{{"Farhan" | length}}</h1>
+    <h1>{{"Farhan" | slice:"::-1"}}</h1>
+    <h1>{{"Hello World" | slice:"2:6"}}</h1>
+    <img src="{% static 'student/image/download.jpeg'%}" alt="">
+  </table>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# Tools: 
+MySQL Installation XAMMP+PHPMyAdmin
+VS Code Database Extension
+
+# BASIC Query Writing 
+ What is Database?
+ What is Table ?
+ What is row, column? 
+ Query from GUI Insert,delete,edit,select(CRUD)
+ Query from SQL Insert,delete,edit,select(CRUD)
+ 
+
+# Database Relationship Sign 
+
+# Database ERD Understanding 
+
+# POS Database Design & Construction & ERD(SQL Developer,DBForge)
+
+# Structured, Un-Structured, Semi-Structured
+
+# Data Modeling --> 1. Normalization, Embeded 
+
+# Join Query 
+
+
+
+SELECT b.firstName,b.lastName,b.mobile,g.name ----->  চাহিদা 
+
+users b  -----> -----> -----> -----> -----> ----->  b মানে কি 
+LEFT JOIN -----> -----> -----> -----> -----> -----> কিভাবে পাশে বসাবো 
+categories g  -----> -----> -----> -----> ----->  g মানে কি 
+
+ON b.id=g.user_id -----> -----> -----> -----> -----> বিয়ে হবে কি সম্পর্কে পমান দ্বাও 
+
+
+
+

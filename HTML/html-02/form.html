@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <form>
+      <!-- <p>Choose your favorite mythical creature:</p>
+        <label for="unicorn">Unicorn</label>
+        <input type="radio" id="unicorn" name="creature" value="unicorn">
+        <br>
+        <label for="dragon">Dragon</label>
+        <input type="radio" id="dragon" name="creature" value="dragon">
+        <br>
+        <label for="phoenix">Phoenix</label>
+        <input type="radio" id="phoenix" name="creature" value="phoenix"> -->
+
+      <p>Select your superpowers:</p>
+      <label for="flight">Flight</label>
+
+      <input
+        type="checkbox"
+        id="flight"
+        name="Superpower"
+        value="Flight"
+      />
+
+      <br />
+      <label for="invisibility">Invisibility</label>
+      <input
+        type="checkbox"
+        id="invisibility"
+        name="Superpower"
+        value="Invisibility"
+      />
+      <br />
+      <label for="strength">Super Strength</label>
+      <input type="checkbox" id="strength" name="Superpower" value="Strength" />
+
+      <!-- <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+-->
+      <br /><br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        required
+        value="hi"
+      />
+
+      <br /><br />
+      <label for="birthday">Birthday:</label>
+      <input type="date" id="birthday" name="birthday" /><br>
+      <input type="submit" id="submit" name="submit" value="Submit"
+      class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+      role="button">Get it now
+      </input>
+    </form>
+  </body>
+</html>

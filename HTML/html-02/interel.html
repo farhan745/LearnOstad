@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Element</title>
+
+    <meta http-equiv="refresh" content="5">
+
+</head>
+
+<body>
+
+    <!-- <button type="button" onclick=""></button> -->
+
+    <details>
+        <summary>A Simple Story</summary>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, ea qui, alias distinctio aliquam fugit
+            animi eaque aliquid ipsa hic quibusdam ex rem maiores. Natus beatae consectetur nemo quam voluptatibus.</p>
+    </details>
+
+    <dialog id="myDialog">
+        <p>This is a dialog box! My own way customized!</p>
+        <button onclick="document.getElementById('myDialog').close()">Close</button>
+    </dialog>
+    <button onclick="document.getElementById('myDialog').showModal
+    ()">Open Dialog</button>
+
+    <p>Progress: </p>
+    <progress value="100" max="200"></progress>
+
+    <label for="volume">Volume:</label>
+    <input type="range" id="volume" name="volume" min="20" max="100" value="50">
+
+    <label for="pet">Choose your favorite pet:</label>
+    <select id="pet" name="pet">
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="dragon">Dragon</option>
+    </select>
+
+    <iframe src="https://www.wikipedia.org/" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    <svg></svg>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+1. What is Client - Server
+2. What is JSON
+3. Python Client Feature
+    - http.client (build in)
+    - requests (3rd Party Package)
+
+4. Lets install Python Client
+    - pip install requests
+    - pip3 install requests
+
+5. How to Make Get Request And Fetch Data
+    - Response Status Code Read
+    - Response JSON Body
+    - Response Header
+
+6. How to Post A Data To Server
+    - Request Payload
+    - Request Header
+    - Response Status Code Read
+    - Response JSON Body
+    - Response Header
+
+7. Working With Date Time
+    - How to works with date,time,hour,year
+    - Date Formating
+    - Date Diff
+
