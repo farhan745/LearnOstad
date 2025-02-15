@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container mt-3">
+    <h1>Sign-up</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+    <input type="submit" class="mt-4 btn btn-outline-warning"value="Submit">
+    </form>
+</div>   
+{% endblock content %}
+    

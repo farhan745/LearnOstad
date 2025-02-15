@@ -1,0 +1,104 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+  {{ post.title }}
+{% endblock %}
+
+{% block content %}
+  <div class="container my-4 p-4 bg-light rounded shadow-sm">
+    <h2 class="display-4">{{ post.title }}</h2>
+    <small class="text-muted">By <strong>{{ post.author }}</strong> on {{ post.created_at }}</small>
+    <hr class="my-4" />
+    <p class="lead">{{ post.content }}</p>
+
+    <!-- Like button -->
+    <style>
+        .like-button {
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .like-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .like-button.liked {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+            animation: pulse 0.5s ease-in-out, colorChange 1s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes colorChange {
+            0% {
+                background-color: #007bff;
+            }
+            50% {
+                background-color: #0056b3; /* Different color */
+            }
+            100% {
+                background-color: #007bff;
+            }
+        }
+        
+    </style>
+
+    {% if is_liked %}
+      <a href="{% url 'like_post' post.id %}" class="btn btn-sm btn-primary like-button liked">👍 Liked</a>
+    {% else %}
+      <a href="{% url 'like_post' post.id %}" class="btn btn-sm btn-outline-primary like-button">👎🏻 UnLike</a>
+    {% endif %}
+
+    {% comment %} Like Count {% endcomment %}
+    <span class="badge badge-success ">
+        Likes: {{ like_count }}
+  
+    </span>
+
+    {% comment %}Views{% endcomment %}
+    <span class="badge badge-pill badge-primary">Views: {{ post.view_count }}</span>
+
+    {% if user == post.author %}
+      <div class="mt-4">
+        <a href="{% url 'post_update' post.id %}" class="btn btn-outline-warning">Edit Post</a>
+        <a href="{% url 'post_delete' post.id %}" class="btn btn-danger ml-4">Delete Post</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="container border">
+    <h3>Comments</h3>
+
+    {% if user.is_authenticated %}
+      <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-outline-secondary mb-4">Add Comment</button>
+        </div>
+      </form>
+    {% else %}
+      <div class="alert alert-warning" role="alert">You must be logged in to comment on this post.</div>
+    {% endif %}
+
+    {% for comment in comments %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ comment.author }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ comment.created_at }}</h6>
+          <p class="card-text">{{ comment.content }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'students/base.html' %}
+{% block content %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h2 class="card-title">{{ student.name }}</h2>
+        <p class="card-text">Email: {{ student.email }}</p>
+        <p class="card-text">Phone Number: {{ student.phone_number }}</p>
+        <p class="card-text">Course: {{ student.course }}</p>
+        <a class="btn btn-primary" href="{% url 'student_update' student.pk %}">Edit</a>
+        <form action="{% url 'student_delete' student.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

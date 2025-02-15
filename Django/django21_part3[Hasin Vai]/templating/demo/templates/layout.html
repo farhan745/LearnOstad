@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title  %}Dashboard - Home{% endblock  %} </title>
+    {% comment %} <script src="//cdn.tailwindcss.com"></script> {% endcomment %}
+    <!-- <link rel="stylesheet" href="/style.css" /> -->
+     {% load static %}
+     <link rel="stylesheet" href=" {% static 'css/style.css' %} ">
+  </head>
+  <body class="bg-gray-100">
+    <div class="min-h-screen flex flex-col">
+      <!-- Top Navigation Bar -->
+      {% include "components/header.html" %}
+
+      <div class="flex flex-1">
+        <!-- Sidebar -->
+       
+        {% include "components/nav.html" %}
+
+        <!-- Main Content -->
+        {% block content %}
+        <main class="flex-1 p-6">
+          <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Welcome to Dashboard</h2>
+            <p class="text-gray-600">This is the home page of your dashboard. Here you can find an overview of your most important data and quick access to common tasks.</p>
+          </div>
+        </main>
+        {% endblock content %}
+
+
+      </div>
+
+      <!-- Footer -->
+      {% include "components/footer.html" %}
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

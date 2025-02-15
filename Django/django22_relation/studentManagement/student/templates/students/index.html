@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock title %}
+{% block content %}
+    {% comment %} <a href="{% url 'create_student' %}" class="btn btn-primary">Add Student</a {% endcomment %}
+    <h1>All Student List</h1>
+    <div class="d-flex flex-wrap justify-content-between container">
+     {% for student in students %}
+      <div class="card col-3 mb-3" style="width: 18rem;">
+        <img src="{{student.photo.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{student.name}}</h5>
+          <p class="card-text">
+            <p><span class="fw-bolder">Roll: </span> {{student.id}}</p>
+            <p><span class="fw-bolder">Email: </span> {{student.email}}</p>
+            <p><span class="fw-bolder">Contact: </span>{{student.phone}}</p>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}

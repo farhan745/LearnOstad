@@ -1,0 +1,13 @@
+{% extends 'students/base.html' %}
+{% block content %}
+<div class="card mt-4">
+    <div class="card-body">
+        <h2 class="card-title">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Student</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

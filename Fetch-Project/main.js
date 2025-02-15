@@ -93,25 +93,22 @@ function categorySelect(id) {
 
 const catButtons = document.querySelector("#categoryButtons");
 //const categories=["Technology","Plant","Sports","Art","Health"];
-axios("https://basic-blog.teamrabbil.com/api/post-categories")
-  
-  .then((data) => {
-    data.data.forEach((el) => {
-      catButtons.innerHTML += `<button 
+axios("https://basic-blog.teamrabbil.com/api/post-categories").then((data) => {
+  data.data.forEach((el) => {
+    catButtons.innerHTML += `<button 
         onclick="categorySelect(${el.id})" 
         class="px-4 py-2 rounded-xl bg-gray-100 text-gray-600 hover:bg-purple-600 hover:text-white hover:shadow-lg hover:shadow-purple-200 transition-all text-sm sm:text-base whitespace-nowrap">
         ${el["name"]}
     </button>`;
-    });
   });
+});
 
-  const categoriesBottom = document.querySelector("#catBot");
-  axios("https://basic-blog.teamrabbil.com/api/post-categories")
-  .then((data) => {
-    data.data.forEach((el) => {
-      categoriesBottom.innerHTML += `<li><a href="#" onclick="categorySelect(${el.id})"  class="text-gray-400 hover:text-purple-400 transition-colors">${el.name}</a>`
-    });
+const categoriesBottom = document.querySelector("#catBot");
+axios("https://basic-blog.teamrabbil.com/api/post-categories").then((data) => {
+  data.data.forEach((el) => {
+    categoriesBottom.innerHTML += `<li><a href="#" onclick="categorySelect(${el.id})"  class="text-gray-400 hover:text-purple-400 transition-colors">${el.name}</a>`;
   });
+});
 const postList = document.querySelector("#postList");
 fetch("https://basic-blog.teamrabbil.com/api/post-newest")
   .then((response) => response.json())
@@ -150,55 +147,56 @@ fetch("https://basic-blog.teamrabbil.com/api/post-newest")
     });
   });
 
-function leaveComment() {
-  const name = document.getElementById("authorName").value;
-  const comment = document.getElementById("commentText").value;
+function setupCommentForm(postId) {
+    const commentForm = document.getElementById('commentForm');
 
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-  const commentList = document.getElementById("commentList");
+    // Remove existing event listeners (if any) to prevent duplicate handlers
+    commentForm.replaceWith(commentForm.cloneNode(true));
+    const newCommentForm = document.getElementById('commentForm');
 
-  // Create the new comment element
-  const postNewComment = document.createElement("div");
-  postNewComment.className =
-    "bg-white p-6 rounded-xl shadow-sm border border-gray-100";
+    newCommentForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
 
-  // Add the content to the new comment element
-  postNewComment.innerHTML = `
-              <div class="flex items-center gap-3 mb-3">
-                  <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-semibold">
-                      ${name[0].toUpperCase()}
-                  </div>
-                  <div>
-                      <div class="font-semibold text-gray-800">${name}</div>
-                      <div class="text-sm text-gray-500">${
-                        month[new Date().getMonth()] +
-                        " " +
-                        new Date().getDate() +
-                        ", " +
-                        new Date().getFullYear()
-                      }</div>
-                  </div>
-              </div>
-              <p class="text-gray-600 leading-relaxed">${comment}</p>
-          `;
+        // Create a new FormData object from the form
+        const formData = new FormData(newCommentForm);
 
-  // Append the new comment to the comment list
-  commentList.appendChild(postNewComment);
+        // Add the custom key-value pair (list_id)
+        const customData = new FormData();
+        customData.append('list_id', postId);
 
-  // Clear the input fields
-  document.getElementById("authorName").value = "";
-  document.getElementById("commentText").value = "";
+        // Add all the form data to the customData object
+        formData.forEach((value, key) => {
+            customData.append(key, value);
+        });
+
+        // Convert FormData to a plain object
+        const formObject = {};
+        customData.forEach((value, key) => {
+            formObject[key] = value;
+        });
+
+        // Send the data via a POST request
+        fetch('https://basic-blog.teamrabbil.com/api/create-comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formObject),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+                newCommentForm.reset(); // Reset the form
+
+                // Reload comments
+                fetch(`https://basic-blog.teamrabbil.com/api/post-details/${postId}`)
+                    .then((response) => response.json())
+                    .then((updatedData) => {
+                        loadComments(updatedData); // Refresh the comments list
+                    })
+                    .catch((error) => console.error('Error reloading comments:', error));
+            })
+            .catch((error) => console.error('Error submitting comment:', error));
+    });
 }
+

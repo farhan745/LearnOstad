@@ -1,0 +1,8 @@
+{% load {% csrf_token %} %} {% extends "base.html" %} {% block content %}
+<h1>Sign Up Form</h1>
+<form action="">
+  {{form}} 
+  {% csrf_token %}
+  <input type="text" value="submit" />
+</form>
+{% endblock %}
