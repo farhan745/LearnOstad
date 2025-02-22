@@ -1,0 +1,21 @@
+<!-- delete_student.html -->
+{% extends "base.html" %}
+{% block title %}Delete Confirmation{% endblock title %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h4>Delete Confirmation</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Are you sure you want to delete "<strong>{{ object }}</strong>"?</p>
+            <form method="post">{% csrf_token %}
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-secondary mx-2" onclick="window.history.back();">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

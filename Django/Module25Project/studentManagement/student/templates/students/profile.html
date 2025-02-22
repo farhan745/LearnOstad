@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Create/Update Student{% endblock title %}
+{% block content %}
+<h1>All Student List</h1>
+    <div class="d-flex flex-wrap justify-content-between container">
+     {% for student in students %}
+      <div class="card col-3 mb-3" style="width: 18rem;">
+        <img src="{{student.photo.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{student.name}}</h5>
+          <p class="card-text">
+            <p><span class="fw-bolder">Roll: </span> {{student.id}}</p>
+            <p><span class="fw-bolder">Email: </span> {{student.email}}</p>
+            <p><span class="fw-bolder">Contact: </span>{{student.phone}}</p>
+          </p>
+          
+          <a href="{% url 'update_student' id=student.id %}" class="btn btn-warning">Edit</a>
+          <a href="{% url 'delete_student' id=student.id %}" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+{% endblock %}
