@@ -2,23 +2,24 @@
 {% load crispy_forms_tags %}
 {% block title %}Create/Update Student{% endblock title %}
 {% block content %}
-<h1>All Student List</h1>
-    <div class="d-flex flex-wrap justify-content-between container">
-     {% for student in students %}
-      <div class="card col-3 mb-3" style="width: 18rem;">
-        <img src="{{student.photo.url}}" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{student.name}}</h5>
-          <p class="card-text">
-            <p><span class="fw-bolder">Roll: </span> {{student.id}}</p>
-            <p><span class="fw-bolder">Email: </span> {{student.email}}</p>
-            <p><span class="fw-bolder">Contact: </span>{{student.phone}}</p>
-          </p>
-          
-          <a href="{% url 'update_student' id=student.id %}" class="btn btn-warning">Edit</a>
-          <a href="{% url 'delete_student' id=student.id %}" class="btn btn-danger">Delete</a>
+<h1 class="text-center my-4">Profile</h1>
+<div class="container">
+    <div class="row">
+        {% for student in students %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow border-0">
+                <img src="{{student.photo.url}}" alt="Card image cap" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{student.name}}</h5>
+                    <p class="card-text text-muted">{{student.description}}</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'update_student' id=student.id %}" class="btn btn-outline-warning mx-2">Edit</a>
+                        <a href="{% url 'delete_student' id=student.id %}" class="btn btn-danger mx-2">Delete</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      {% endfor %}
+        {% endfor %}
     </div>
+</div>
 {% endblock %}

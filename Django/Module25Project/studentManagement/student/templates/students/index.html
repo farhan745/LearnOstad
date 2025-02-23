@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Home Page{% endblock title %}
 {% block content %}
-    {% comment %} <a href="{% url 'create_student' %}" class="btn btn-primary">Add Student</a {% endcomment %}
-    <h1>All Lists</h1>
-    <div class="d-flex flex-wrap  justify-content-start container">
-     {% for student in students %}
-      {% comment %} <div class="card col-3 mb-3" style="width: 300px;">
+    {% comment %} <a href="{% url 'create_student' %}" class="btn btn-primary">Add Student</a> {% endcomment %}
+    <h1 class="text-center">All Lists</h1>
+    <div class="d-flex flex-wrap justify-content-start container">
+        {% for student in students %}
+        {% comment %} <div class="card col-3 mb-3" style="width: 300px;">
         <img src="{{student.photo.url}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{student.name}}</h5>
@@ -21,22 +21,22 @@
           </div>
         </div>
       </div> {% endcomment %}
-      <div class="card mb-4 mx-3 shadow-sm" style="width: 18rem;">
-        <img class="card-img-top" src="{{student.photo.url}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{student.name}}</h5>
-            <p class="card-text">
-                <strong>Description:</strong> 
-                <p style="color:gray">{{student.description}}</p>
-            </p>
-            <div class="d-flex mx-3 justify-content-end">
-                <a  href="{% url 'update_student' student.id %}" class="btn btn-outline-warning mx-3">Edit</a>
-                <a href="{% url 'delete_student' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+        <div class="card mb-4 mx-3 shadow-lg border-0" style="width: 18rem; border-radius: 0;">
+            <img class="card-img-top mt-3 shadow" src="{{student.photo.url}}" alt="Student photo" style="border-radius: 0; transition: transform 0.3s ease-in-out;">
+            <div class="card-body text-center">
+                <h5 class="card-title">{{student.name}}</h5>
+                <p class="card-text">
+                    <strong>Description:</strong>
+                    <p style="color: gray;">{{student.description}}</p>
+                </p>
+                <div class="d-flex justify-content-center">
+                    <a href="{% url 'update_student' student.id %}" class="btn btn-outline-warning mx-2">Edit</a>
+                    <a href="{% url 'delete_student' student.id %}" class="btn btn-danger mx-2">Delete</a>
+                </div>
             </div>
         </div>
-        
-    </div>
-    
-      {% endfor %}
+        {% endfor %}
     </div>
 {% endblock %}
+
+

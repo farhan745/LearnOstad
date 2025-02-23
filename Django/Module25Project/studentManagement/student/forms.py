@@ -8,7 +8,7 @@ class StudentForm(forms.ModelForm):
         exclude = ['user']
        # fields = '__all__'
         labels = {
-            "name": "Student Name",
+            "name": " Name",
             "photo": "Upload Photo",
         }
         help_text = {"email": "Email will be Confidential"}
