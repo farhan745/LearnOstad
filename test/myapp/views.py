@@ -8,6 +8,16 @@ from .models import Post
 from .forms import PostForm, LoginForm, RegistrationForm
 from django.contrib.auth import authenticate, login, logout
 
+# Other imports and views
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id, user=request.user)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('home')
+    return render(request, 'delete_post.html', {'post': post})
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
