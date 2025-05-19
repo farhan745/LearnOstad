@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="text-center mb-4">
+    <h2>{% if edit %}Edit Student{% else %}Create Student{% endif %}</h2>
+  </div>
+  <form class="form-control p-4 bg-dark text-light border border-warning rounded" method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">{% if edit %}Save{% else %}Submit{% endif %}</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

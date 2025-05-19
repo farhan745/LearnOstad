@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected </title>
+    <script src="//cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="container mx-auto px-4">
+    <div class="font-serif text-2xl my-8 ">
+        <h1>This is a Secret Page for User</h1>
+        <h2>You are = <span class="italic ">{{user.username}}</span></h2>
+    </div>
+    
+
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="button" class="text-purple-700 hover:text-white border border-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Logout</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Student Page</title>
+  </head>
+  <body>
+    {% include 'components/nav.html' %}
+    {% if messages %}
+      <div class="container mt-4">
+        <div class="d-flex flex-column gap-2">
+          {% for message in messages %}
+            <div class="alert {% if message.tags %}
+                 alert-{{ message.tags }}
+              {% else %}
+                 alert-info
+              {% endif %} 
+                            d-flex align-items-center justify-content-between border rounded-pill px-4 py-2 shadow-sm">
+              <span class="fw-medium">{{ message }}</span>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

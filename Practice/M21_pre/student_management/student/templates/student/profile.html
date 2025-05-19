@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+<title>Profile</title>
+{% block content %}
+<div class="container my-5">
+    <div class="text-center mb-4">
+      <h1>Welcome to the Student Page</h1>
+    </div>
+    
+    <div class="row d-flex justify-content-start">
+      {% for student in students %}
+      <div class="col-md-3 mb-3">
+        <div class="card text-light" style="width: 100%;">
+          <img class="card-img-top " src="{{student.photo.url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ student.name }}</h5>
+            <p class="card-text">
+              <p>{{ student.email }}</p>
+              <p>{{ student.phone }}</p>
+            </p>
+            <a href="{% url 'update_student' id=student.id %}" class="btn btn-outline-warning btn-block">Edit</a>
+            <a href="{% url 'delete_student' id=student.id %}" class="btn btn-danger btn-block">Delete</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

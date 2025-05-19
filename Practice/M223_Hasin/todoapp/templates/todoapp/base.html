@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Document
+        {% endblock title %}
+    </title>
+    
+    <!-- Tailwind Style -->
+    <style>
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+    </style>
+    
+    <!-- TailwindCSS -->
+    <script src="//cdn.tailwindcss.com?plugins=forms,typography"></script>
+</head>
+<body class="bg-gray-900 text-gray-300">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 shadow-md">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-7">
+                    <!-- Logo -->
+                    <div>
+                        <a href="{% url 'task_list' %}" class="flex items-center py-4">
+                            <span class="font-semibold text-gray-100 text-xl">
+                                Todo App
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Navigation Links -->
+                <div class="flex space-x-4">
+                    <a href="{% url 'task_list' %}" class="text-gray-300 py-2 px-4 rounded hover:bg-gray-700 hover:text-white transition duration-300">
+                        Home
+                    </a>
+                    <a href="#" class="text-gray-300 py-2 px-4 rounded hover:bg-gray-700 hover:text-white transition duration-300">
+                        About
+                    </a>
+                    <a href="#" class="text-gray-300 py-2 px-4 rounded hover:bg-gray-700 hover:text-white transition duration-300">
+                        Contact
+                    </a>
+                    
+                    {% if user.is_authenticated %}
+                        {% if user.username == "john" %}
+                        <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600">
+                            {{ user.username|upper }} 😊
+                        </a>
+                        {% elif user.username == "admin" %}
+                        <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600">
+                            {{ user.username|upper }} 😎
+                        </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Toast Message -->
+    {% if messages %}
+    <div class="fixed top-5 right-5 space-y-4 z-50">
+    {% for message in messages %}
+    <div class="flex items-center max-w-xs p-4 mb-4 text-white rounded-lg shadow-lg 
+        {% if 'deleted' in message.tags %} bg-red-500 
+        {% elif 'created' in message.tags %} bg-green-500 
+        {% elif 'edited' in message.tags %} bg-blue-500 
+        {% elif 'registered' in message.tags %} bg-purple-500 
+        {% elif 'login' in message.tags %} bg-yellow-500 text-black 
+        {% else %} bg-gray-500 {% endif %} animate-slide-in">
+
+        <!-- Icon based on the message type -->
+        <span class="mr-2">
+            {% if 'deleted' in message.tags %}
+                ❌
+            {% elif 'created' in message.tags %}
+                ✅
+            {% elif 'edited' in message.tags %}
+                ✏️
+            {% elif 'registered' in message.tags %}
+                🟣
+            {% elif 'login' in message.tags %}
+                🔓
+            {% else %}
+                ℹ️
+            {% endif %}
+        </span>
+
+        <!-- Message Content -->
+        <p>{{ message }}</p>
+
+        <!-- Close Button -->
+        <button onclick="this.parentElement.remove();" class="ml-auto text-xl leading-none">×</button>
+    </div>
+    {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 max-w-[1124px]">
+        <div class="bg-gray-800 shadow-lg rounded-lg p-6">
+            {% block content %}
+            <h1 class="text-3xl font-bold text-white mb-6">Welcome</h1>
+            <p class="text-gray-400">
+                This is your unified dark-themed page. You can customize this layout to match your login and register pages!
+            </p>
+            {% endblock content %}
+        </div>
+    </div>
+
+    <!-- Footer (Optional) -->
+    <footer class="bg-gray-800 text-center text-gray-400 py-4 mt-8">
+        <p>&copy; 2025 Todo App. All rights reserved.</p>
+    </footer>
+    <!-- Tailwind Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.animate-slide-in').forEach(toast => {
+                    toast.remove();
+                });
+            }, 5000); // Auto-remove after 5 seconds
+        });
+    </script>
+</body>
+</html>

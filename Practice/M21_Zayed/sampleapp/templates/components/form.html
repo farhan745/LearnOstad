@@ -1,0 +1,11 @@
+<form method="post">
+  {% csrf_token %}
+  {% comment %} {{ myform.as_p }} {% endcomment %}
+
+{% for field in myform %}
+    <label for="exampleFromControlInput1" class="form-level mb-3">{{field.label}}</label>
+    {{field}} <br>
+{% endfor %}
+    
+  <button type="submit" class="btn btn-danger">Submit</button>
+</form>

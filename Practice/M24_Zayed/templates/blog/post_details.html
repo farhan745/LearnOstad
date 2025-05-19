@@ -1,0 +1,131 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{post.title}}
+{% endblock title %}
+
+
+{% block content %}
+<style>
+    .success {
+        color: green;
+    }
+    .error {
+        color: red;
+    }
+    .warning {
+        color: orange;
+    }
+    .info {
+        color: blue;
+    }
+    .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .warning {
+        background-color: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffeeba;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .info {
+        background-color: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+        padding: 10px;
+        border-radius: 5px;
+    }
+</style>
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <h2 class="text-center">{{ post.title }}</h2>
+    <small class="text-center">
+        By <b>{{ post.author_id }}</b> on {{ post.created_at }} | 👁️ Views: {{ post.view_count }}
+    </small>
+    <p>{{ post.content }}</p>
+
+    <div class="d-flex justify-content-center mb-3">
+        
+        
+        {% if user == post.author_id %}
+        <a href="{% url 'post_edit' post.id %}" class="mx-3 btn btn-outline-primary">Edit</a>
+        <a href="{% url 'post_delete' post.id %}" class="btn btn-danger">Delete</a> 
+        {% endif %}
+            
+        
+        
+    </div>
+    <div class="text-right mb-3">
+        <button type="button" class="btn btn-info btn-sm ">
+            👁️ Views: <span class="badge badge-light">{{ post.view_count }}</span>
+        </button>
+    </div>
+    
+    {% if is_liked %}
+    <a href="{% url 'like_post' post.id %}" class="btn btn-danger" style="position:relative; bottom: 45px;">
+        👍 Liked
+    </a>
+    {% else %}
+    <a href="{% url 'like_post' post.id %}" class="btn btn-outline-primary" style="position:relative; bottom: 45px;">
+        Like 
+    </a>
+    {% endif %}
+    <a class="btn btn-success btn-sm " style="position:relative; bottom: 45px;border-radius: 100px;">
+        Liked: {{like_count}}
+    </a>
+    
+        
+    
+    <div class="container border mb-3">
+        <div class="d-flex justify-content-between">
+            <h4>Comments</h4>
+            
+            
+                <p>comments: {{comment_count}} </p>
+            
+                
+        </div>
+        {% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{comment_form|crispy}}
+            <div class="d-grid gap-2 mb-3 text-right">
+                <button type="submit" class="btn btn-secondary">Add Comment</button>
+            </div>
+        </form>
+        {% else %}
+        <p class="text-center">You need to be logged in to add a comment.</p>
+        {% endif %}
+
+        {% for comment in comments %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ comment.author }}</h5>
+                    <small class="text-muted">{{ comment.created_at }}</small>
+                    <p class="card-text">{{ comment.content }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+    

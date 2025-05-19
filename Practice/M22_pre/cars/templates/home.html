@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Car Details</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Car Name</th>
+                    <th>Car Company</th>
+                    <th>CEO Name</th>
+                    <th>Fuel Names</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for car in car_details  %}
+                <tr>
+                    <td>{{car.car_name}}</td>
+                    <td>{{car.car_company}}</td>
+                    <td>{{car.ceo_name}}</td>
+                    <td>{{car.fuel_names}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta3/js/bootstrap.min.js"></script>
+</body>
+</html>

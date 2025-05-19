@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "django-tour",
+  "steps": [
+    {
+      "file": "watchlist_app/api/serializers.py",
+      "description": "Only Link dekabe.",
+      "line": 13
+    }
+  ]
+}
